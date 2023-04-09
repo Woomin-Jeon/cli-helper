@@ -32,6 +32,7 @@ export default class GitBranch extends Command {
       }]);
 
       exec(`git branch -D ${branchList.join(' ')}`);
+      this.log(`Branch deleted! ${branchList.join(', ')}`);
       this.exit();
     }
 
