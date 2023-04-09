@@ -35,7 +35,7 @@ const findWorkspacePackageJSONPathes = (workspacePathes: string[]) => workspaceP
     return childDirPathes.map((childDirPath) => `${childDirPath}/package.json`);
   }
 
-  return [`${path}/package.json`];
+  return [`${workspacePath}/package.json`];
 });
 
 export default class YarnWorkspaces extends Command {
