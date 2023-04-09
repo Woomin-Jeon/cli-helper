@@ -5,7 +5,7 @@ export default class Branch extends Command {
   async run() {
     const { branches } = getBranchInfo();
 
-    branches.forEach((branch) => this.log(branch));
+    branches.forEach((branch) => this.log(`>>> ${branch}`));
     this.exit();
   }
 }
