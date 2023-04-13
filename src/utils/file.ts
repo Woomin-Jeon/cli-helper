@@ -31,4 +31,11 @@ export const findFilesByDESC = (fileName: string, currentDir: string): string[] 
   return childPathes.flatMap((childPath: string) => findFilesByDESC(fileName, childPath));
 };
 
-export const parseJSONFile = (path: string) => JSON.parse(fs.readFileSync(path, 'utf-8'));
+export const parseJSONFile = (path: string) => {
+  try {
+    const jsonFile = fs.readFileSync(path, 'utf-8');
+    return JSON.parse(jsonFile);
+  } catch {
+    return null;
+  }
+};

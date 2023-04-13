@@ -53,7 +53,7 @@ export default class YarnWorkspaces extends Command {
     const workspacePathes = rootPackageJSON.workspaces.map((workspacePath: string) => `${packageJSONDirPath}/${workspacePath}`);
 
     const workspacePackageJSONPathes = findWorkspacePackageJSONPathes(workspacePathes);
-    const workspacePackageJSONs = workspacePackageJSONPathes.map((workspacePackageJSONPath) => parseJSONFile(workspacePackageJSONPath));
+    const workspacePackageJSONs = workspacePackageJSONPathes.map((workspacePackageJSONPath) => parseJSONFile(workspacePackageJSONPath)).filter(Boolean);
 
     const workspaceNames = workspacePackageJSONs.map((packageJSON) => packageJSON.name);
 
