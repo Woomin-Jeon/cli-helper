@@ -39,3 +39,11 @@ export const parseJSONFile = (path: string) => {
     return null;
   }
 };
+
+export const readFilePromise = (filePath: string) => new Promise<string>((resolve, reject) => {
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    err ? reject(err) : resolve(data);
+  });
+});
+
+export const readBulkFiles = (filePathes: string[]) => Promise.all(filePathes.map((filePath) => readFilePromise(filePath)));

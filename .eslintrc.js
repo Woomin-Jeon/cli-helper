@@ -27,5 +27,8 @@ module.exports = {
     'max-len': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': 'off',
+    'no-continue': 'off',
+    'no-unused-vars': 'off',
+    'no-unused-expressions': 'off',
   },
 };

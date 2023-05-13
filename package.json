@@ -10,7 +10,8 @@
   },
   "files": [
     "bin",
-    "lib"
+    "lib",
+    "assets"
   ],
   "bin": "./bin/run",
   "oclif": {
