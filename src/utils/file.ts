@@ -40,10 +40,26 @@ export const parseJSONFile = (path: string) => {
   }
 };
 
-export const readFilePromise = (filePath: string) => new Promise<string>((resolve, reject) => {
+export const readFile = (filePath: string) => new Promise<string>((resolve, reject) => {
   fs.readFile(filePath, 'utf-8', (err, data) => {
     err ? reject(err) : resolve(data);
   });
 });
 
-export const readBulkFiles = (filePathes: string[]) => Promise.all(filePathes.map((filePath) => readFilePromise(filePath)));
+export const readBulkFiles = (filePathes: string[]) => Promise.all(filePathes.map((filePath) => readFile(filePath)));
+
+export const readDirectory = (dirPath: string) => new Promise<string[]>((resolve, reject) => {
+  fs.readdir(dirPath, (err, files) => {
+    if (err) reject(err);
+
+    resolve(files);
+  });
+});
+
+export const writeFile = (filePath: string, data:string) => new Promise((resolve, reject) => {
+  fs.writeFile(filePath, data, (err) => {
+    if (err) reject(err);
+
+    resolve(true);
+  });
+});
