@@ -1,4 +1,5 @@
 import { Args, Command, ux } from '@oclif/core';
+import { getCommitInfo } from '../../../utils/commit';
 import { spawn } from '../../../utils/exec';
 
 export default class GitResetHead extends Command {
@@ -13,8 +14,11 @@ export default class GitResetHead extends Command {
 
     console.clear();
 
-    const resetCount = args.resetCount || (await ux.prompt('How many commits need to be reset'));
-    const answer = await ux.prompt(`Execute "git reset HEAD~${resetCount}".\nAre you sure? yes/no`, {
+    const resetCount = Number(args.resetCount || (await ux.prompt('How many commits need to be reset')));
+
+    const { commits } = getCommitInfo({ size: resetCount });
+
+    const answer = await ux.prompt(`Execute "git reset HEAD~${resetCount}".\n\n${commits.map((commit) => `- ${commit}`).join('\n')}\n\nAre you sure? yes/no`, {
       required: true,
       default: 'yes',
     });
