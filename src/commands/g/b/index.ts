@@ -1,7 +1,7 @@
 import { Command, Flags } from '@oclif/core';
 import inquirer from 'inquirer';
 import { getBranchInfo } from '../../../utils/branch';
-import { exec } from '../../../utils/exec';
+import { spawn } from '../../../utils/exec';
 
 export default class GitBranch extends Command {
   static flags = {
@@ -31,7 +31,7 @@ export default class GitBranch extends Command {
         choices: filteredBranches.map((name) => ({ name })),
       }]);
 
-      exec(`git branch -D ${branchList.join(' ')}`);
+      spawn(`git branch -D ${branchList.join(' ')}`);
       this.log(`Branch deleted! ${branchList.join(', ')}`);
       this.exit();
     }
