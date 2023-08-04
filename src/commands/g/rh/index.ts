@@ -1,11 +1,20 @@
-import { Command, ux } from '@oclif/core';
-import { exec } from '../../../utils/exec';
+import { Args, Command, ux } from '@oclif/core';
+import { spawn } from '../../../utils/exec';
 
 export default class GitResetHead extends Command {
+  static args = {
+    resetCount: Args.integer({
+      required: false,
+    }),
+  };
+
   async run() {
+    const { args } = await this.parse(GitResetHead);
+
     console.clear();
-    const count = await ux.prompt('How many commits need to be reset');
-    const answer = await ux.prompt(`Execute "git reset HEAD~${count}". Are you sure? yes/no`, {
+
+    const resetCount = args.resetCount || (await ux.prompt('How many commits need to be reset'));
+    const answer = await ux.prompt(`Execute "git reset HEAD~${resetCount}".\nAre you sure? yes/no`, {
       required: true,
       default: 'yes',
     });
@@ -14,7 +23,7 @@ export default class GitResetHead extends Command {
       return;
     }
 
-    exec(`git reset HEAD~${count}`);
+    spawn(`git reset HEAD~${resetCount}`);
     this.exit();
   }
 }
