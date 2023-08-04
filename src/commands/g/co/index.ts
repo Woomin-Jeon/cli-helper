@@ -27,6 +27,11 @@ export default class GitCheckout extends Command {
       this.exit()
     }
     
+    if (args.branchName) {
+      spawn(`git checkout ${args.branchName}`)
+      this.exit()
+    }
+
     const { branches } = getBranchInfo();
 
     console.clear();
