@@ -22,6 +22,11 @@ export default class GitCheckout extends Command {
 
     if (flags.branchCreation) {
       const newBranchName = args.branchName;
+      if (!newBranchName) {
+        this.log('Branch name does not exist');
+        this.exit();
+      }
+
       spawn(`git checkout -b ${newBranchName}`);
       this.exit();
     }
