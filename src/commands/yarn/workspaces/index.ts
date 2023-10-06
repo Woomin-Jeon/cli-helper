@@ -1,6 +1,7 @@
 import path from 'path';
 import inquirer from 'inquirer';
 import { Command, ux } from '@oclif/core';
+import { clipboard } from '@src/utils/clipboard';
 import { spawn } from '../../../utils/exec';
 import { getParentPath, getChildDirPathes } from '../../../utils/path';
 import { findFileByASC, parseJSONFile } from '../../../utils/file';
@@ -76,6 +77,7 @@ export default class YarnWorkspaces extends Command {
     }]);
 
     const wholeCommand = `yarn workspace ${targetWorkspaceName} ${targetCommand}`;
+    clipboard.copy(wholeCommand);
 
     ux.action.start(`Executing command... \n$ ${wholeCommand}`);
     spawn(wholeCommand);
