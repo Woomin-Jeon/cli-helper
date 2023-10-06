@@ -1,7 +1,7 @@
 import path from 'path';
 import inquirer from 'inquirer';
 import { Command, ux } from '@oclif/core';
-import { clipboard } from '@src/utils/clipboard';
+import { clipboard } from '../../../utils/clipboard';
 import { spawn } from '../../../utils/exec';
 import { getParentPath, getChildDirPathes } from '../../../utils/path';
 import { findFileByASC, parseJSONFile } from '../../../utils/file';
