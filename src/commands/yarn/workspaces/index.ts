@@ -82,5 +82,7 @@ export default class YarnWorkspaces extends Command {
     ux.action.start(`Executing command... \n$ ${wholeCommand}`);
     spawn(wholeCommand);
     ux.action.stop('\n⚡ Command execution completed!');
+
+    clipboard.copy(wholeCommand);
   }
 }
