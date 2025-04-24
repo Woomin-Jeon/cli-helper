@@ -1,5 +1,5 @@
 import { Command, Flags } from '@oclif/core';
-import { getLogInfo } from '@src/utils/log';
+import { getLogInfo } from '../../../utils/log';
 
 export default class GitLog extends Command {
   async run() {
